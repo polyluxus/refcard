@@ -79,7 +79,7 @@ Since \lstinline`refcard` is based on \lstinline`article` most options can be pa
 
 \section{Additional Options}
 
-\begin{refcardtable}[tablecolumns=2,tablecolumnalign=l]
+\begin{refcardtable}[envcolumns=2,cellalign=l]
   \lstinline`columns=<num>`   & How many columns, default is 3.\\
   \lstinline`margin=<length>` & Passed to \lstinline`geometry`, default 1~cm.
 \end{refcardtable}
@@ -107,17 +107,17 @@ Since \lstinline`refcard` is based on \lstinline`article` most options can be pa
 The environment \lstinline`refcardlist` is a description based list,
 which means that the item is a string, for example to use as a command.
 It automatically adjusts the width of the label to the longest one.
-The label can be formatted by specifying \lstinline`font=<command>`.
+The label can be formatted by specifying \lstinline`labelfont=<command>`.
 
 For example:
-\begin{refcardlist}[font=\ttfamily]
+\begin{refcardlist}[labelfont=\ttfamily]
   \item[Short]         text text text
   \item[A long label]  text text text
   \item[Shorter]       text text text
 \end{refcardlist}
 
 \begin{lstlisting}
-\begin{refcardlist}[font=\ttfamily]
+\begin{refcardlist}[labelfont=\ttfamily]
   \item[Short]         text text text
   \item[A long label]  text text text
   \item[Shorter]       text text text
@@ -128,18 +128,18 @@ For example:
 
 With the environment \lstinline`refcardinline` the list will be
 set as a single paragraph.
-The label can be formatted by specifying \lstinline`font=<command>`.
+The label can be formatted by specifying \lstinline`labelfont=<command>`.
 Items are joined by a semicolon (;) and the list is closed with a full stop (.).
 
 For example: 
-\begin{refcardinline}[font=\itshape]
+\begin{refcardinline}[labelfont=\itshape]
 \item[Short]         text text text 
 \item[A long label]  text text text 
 \item[Shorter]       text text text 
 \end{refcardinline}
 
 \begin{lstlisting}
-\begin{refcardinline}[font=\itshape]
+\begin{refcardinline}[labelfont=\itshape]
 \item[Short]         text text text 
 \item[A long label]  text text text 
 \item[Shorter]       text text text 
@@ -151,10 +151,10 @@ For example:
 The environment \lstinline`refcardcolumnlist` provides access to a list, 
 which is set in multiple columns.
 The number of columns can be given as an optional argument,
-in the form \lstinline`listcolumns=<INT>`
+in the form \lstinline`envcolumns=<INT>`
 the default is to use two.
 
-\begin{refcardcolumnlist}[listcolumns=5]
+\begin{refcardcolumnlist}[envcolumns=5]
 \item text
 \item text
 \item text
@@ -168,7 +168,7 @@ the default is to use two.
 
 \begin{lstlisting}
 \begin{refcardcolumnlist}
-\begin{rscolslist}[listcolumns=5]
+\begin{rscolslist}[envcolumns=5]
 \item text
 \item text
 \item text
@@ -187,7 +187,7 @@ While it is often desired for these cheat sheets, it is not easily implemented.
 For the time being, there is an environment which accepts \textquote{code}: 
 \lstinline`refcardverblist`.
 
-\begin{refcardverblist}[listcolumns=3]
+\begin{refcardverblist}[envcolumns=3]
     \item[\( \times   \)] \lstinline|\times| 
     \item[\( \infty   \)] \lstinline|\infty| 
     \item[\( \supset  \)] \lstinline|\supset|
@@ -196,7 +196,7 @@ For the time being, there is an environment which accepts \textquote{code}:
 \end{refcardverblist}
 
 \begin{lstlisting}
-\begin{refcardverblist}[listcolumns=3]
+\begin{refcardverblist}[envcolumns=3]
     \item[\( \times   \)] \lstinline|\times| 
     \item[\( \infty   \)] \lstinline|\infty| 
     \item[\( \supset  \)] \lstinline|\supset|
@@ -215,15 +215,15 @@ where the row of the table will fill the whole line.
 
 The first one is \lstinline`refcardtable`.
 The number of columns can be changed in the optional argument, but defaults to two, 
-e.g. \lstinline`tablecolumns=<INT>`. The alignment of the columns can be changed
-with \lstinline`tablecolumnalign=<r|l|c|X>`.
+e.g. \lstinline`envcolumns=<INT>`. The alignment of the columns can be changed
+with \lstinline`cellalign=<r|l|c|X>`.
 The last column, however, is special, because it is used to balance the table and 
 therefore the column type is fixed as \lstinline`X`.
 
 As mentioned before, strings to be handled verbatim can be placed in this environment,
 see row 3
 
-\begin{refcardtable}[tablecolumns=3,tablecolumnalign=c]
+\begin{refcardtable}[envcolumns=3,cellalign=c]
   \hline
   Short               & 1 & text text text\\
   A long label        & 2 & text text text\\
@@ -232,7 +232,7 @@ see row 3
 \end{refcardtable}
 
 \begin{lstlisting}
-\begin{refcardtable}[tablecolumns=3,tablecolumnalign=c]
+\begin{refcardtable}[envcolumns=3,cellalign=c]
   \hline
   Short        & 1 & text text text\\
   A long label & 2 & text text text\\
