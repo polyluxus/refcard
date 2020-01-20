@@ -6,14 +6,9 @@ This class is mainly based on the Tex - Latex Stack Exchange question and answer
 
 It contains contributions from:
 
- -  Mike Renfro  
-  \href{https://tex.stackexchange.com/users/3345}{\faStackExchange https://tex.stackexchange.com/users/3345}
-  \href{https://github.com/mikerenfro}{\faGithub https://github.com/mikerenfro}
- - Sean Allred 
-  \href{https://tex.stackexchange.com/users/17423}{\faStackExchange https://tex.stackexchange.com/users/17423}
-  \href{https://github.com/vermiculus}{\faGithub https://github.com/vermiculus}
- - Eric Berquist  
-  \href{https://github.com/berquist}{\faGithub https://github.com/berquist}
+ - Mike Renfro (https://tex.stackexchange.com/users/3345; https://github.com/mikerenfro)
+ - Sean Allred (https://tex.stackexchange.com/users/17423; https://github.com/vermiculus)
+ - Eric Berquist (https://github.com/berquist)
 
 Other code has also been imported into this repository. 
 This is also highlighted in the commented source code.
@@ -24,9 +19,9 @@ This is also highlighted in the commented source code.
  - The automatically adjusting label width is based on the answers by user121799 (no stack exchange profile page)
    and Gonzalo Medina (https://tex.stackexchange.com/users/3954)
    Why conflict between mathtools and Gonzalo's solution for auto-adjusting description environment?
-   (https://tex.stackexchange.com/q/461056/33413)}
+   (https://tex.stackexchange.com/q/461056/33413)
    Automatically set description list `labelwidth` based on widest label?
-   (https://tex.stackexchange.com/q/130097/33413)}}
+   (https://tex.stackexchange.com/q/130097/33413)
 
  - Expansion of column types in array tables is  based on the code provided by Bruno Le Floch
    (https://tex.stackexchange.com/users/2707).

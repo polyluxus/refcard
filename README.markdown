@@ -38,11 +38,29 @@ original implementation:
  Mike Renfro ([Mike Renfro](https://tex.stackexchange.com/users/3345),
   [mikerenfro](https://github.com/mikerenfro));
  Sean Allred ([Sean Allred](https://tex.stackexchange.com/users/17423),
-  [vermiculus](https://github.com/vermiculus);
- Eric Berquist], ([berquist](https://github.com/berquist)).
+  [vermiculus](https://github.com/vermiculus));
+ Eric Berquist, ([berquist](https://github.com/berquist)).
 
 Currently maintained by Martin C Schwarzer ([Martin-マーチン](https://chemistry.stackexchange.com/users/4945),
   [polyluxus](https://github.com/polyluxus)).
 
-The class and the document are licensed [CC-BY-SA 4.0](LICENSE.markdown).
+
+Other code has also been imported into this repository. 
+This is also highlighted in the commented source code.
+
+ - Part of the code is adapted from the answer of Werner ([Werner](https://tex.stackexchange.com/users/5764)):
+   [How to create a command with key values?](https://tex.stackexchange.com/a/34314/33413)
+
+ - The automatically adjusting label width is based on the answers by user121799 (no stack exchange profile page)
+   and Gonzalo Medina ([Gonzalo Medina](https://tex.stackexchange.com/users/3954)):
+   - [Why conflict between mathtools and Gonzalo's solution for auto-adjusting description environment?](https://tex.stackexchange.com/q/461056/33413)
+   - [Automatically set description list `labelwidth` based on widest label?](https://tex.stackexchange.com/q/130097/33413)
+
+ - Expansion of column types in array tables is based on the code provided by Bruno Le Floch
+   ([Bruno Le Floch](https://tex.stackexchange.com/users/2707)):
+   [How do I expand a macro into a tabular head?](https://tex.stackexchange.com/a/14460/33413)
+
+## License
+
+The class is licensed [CC-BY-SA 4.0](LICENSE.markdown).
 
