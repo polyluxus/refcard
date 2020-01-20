@@ -1,0 +1,807 @@
+% \iffalse meta-comment
+%
+% This work is licensed under the
+% 
+%   Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+% 
+% To view a copy of this license, visit
+% 
+%   https://creativecommons.org/licenses/by-sa/4.0/
+% 
+% Repository:
+% 
+%   https://github.com/polyluxus/refcard
+% 
+% Current Maintainer:
+% 
+%   Martin C Schwarzer <polyluxus@gmail.com>
+% 
+% For a list of contributers see the manual, or
+% 
+%   https://github.com/polyluxus/refcard/CONTRIBUTORS
+% 
+% This work consists of the files refcard.dtx and refcard.ins
+% and the derived filebase refcard.cls.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{refcard.dtx}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<class>\ProvidesClass{refcard}
+%<*class>
+    [2020/01/20 v1.0 Reference Card Class]
+%</class>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{setspace}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{lightgray}{gray}{0.95}
+\usepackage{listings}
+\lstdefinestyle{mytex}{
+  language=[LaTeX]TeX,%
+  backgroundcolor=\color{lightgray},%
+  basicstyle=\footnotesize\ttfamily,%
+  keywordstyle=\bfseries,%
+  breaklines=true,%
+  morekeywords={part,chapter,subsection,subsubsection,paragraph,subparagraph}%
+}
+\lstset{style=mytex}
+\usepackage{fontawesome} 
+\usepackage{ccicons}
+\usepackage{hyperref}
+\newcommand\mybackslash{\char`\\}
+\usepackage{dtxdescribe}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{refcard.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{176}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2020/01/20}{Initial Version}
+%
+% \GetFileInfo{refcard.dtx}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+%
+%
+% \providecommand*{\url}{\texttt}
+% \title{The \textsf{refcard} class}
+% \author{Martin C Schwarzer \\ \url{polyluxus@gmail.com}}
+% \date{\fileversion~from \filedate}
+%
+% \maketitle
+%
+% \tableofcontents
+%
+% \section{Introduction}
+%
+% According to \href{https://en.wikipedia.org/wiki/Cheat_sheet}{Wikipedia}, 
+% a cheat sheet is a concise set of notes used for quick reference.
+% Some might even call it a \href{https://en.wikipedia.org/wiki/Reference_card}{reference sheet}, 
+% hence the name.
+% In lieu of a proper documentation, we provide herewith a 
+% reference sheet for the document class \lstinline`refcard`.
+% 
+% This small class is aimed to make the typesetting of 
+% reference sheets a bit less tedious, so you can focus on using them.
+% The class is inspired from the question and answer 
+% \faStackExchange~\href{https://tex.stackexchange.com/q/99765}{Document Class for Reference Cards}.
+% 
+% Since \lstinline`refcard` is based on \lstinline`article` most options can be passed on (see further below).
+% 
+% \section{Usage}
+%
+% After you have obtained and installed the class file you can load the class directly:
+% 
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\documentclass{refcard}
+[...]
+\begin{document}
+[...]
+\end{document}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+% 
+% \subsection{Class Option and disabled options}
+% 
+% There are currently two options provided for this class:
+% 
+% \DescribeKey[class]{columns}
+% The columns option specifies the number of columns which sshall be used. 
+% For this purpose the \lstinline`multicol` package is loaded, and the begin and end
+% document hooks are ammended. If not specified, it defaults to three columns.
+% 
+% \DescribeKey[class]{margin}
+% The margin option lets you specify a uniform margin used for the reference card.
+% This length will be passed on to the \lstinline`geometry` package.
+% If not specified, it defaults to 1~cm.
+% 
+% There are three options disabled, as they might clash with this class:
+% 
+% \DescribeKey[disabled]{portrait}
+% Reference cards are usually set in landscape format; therefore this option is ignored and 
+% will produce a warning.
+% 
+% \DescribeKey[disabled]{titlepage}
+% Since the reference card should consist of two pages at most, there is no titlepage provided.
+% This option is ignored and will result in a warning.
+% 
+% \DescribeKey[disabled]{twocolumn}
+% The class uses the \lstinline`multicol` package as described above.
+% If this option is specified, an error will result.
+% To achieve the same effect, specify \lstinline`columns=2` while loading the class.
+% %
+% \subsection{Redefinitions}
+% 
+% The class redefines itemise environments to reduce the spacing around them.
+% It also removes page numbers and numbers from sections.
+% \DescribeMacro{\maketitle}
+% The \lstinline`\maketitle` command has also been modified to produce a dense header.
+% 
+% 
+% \subsection{New Environments}
+%
+% The environments accept optional arguments in the form of key-value pairs.
+%
+% \DescribeKey[Env]{labelfont}
+% In description based environments the label font can be adjusted with e.g. \lstinline`labelfont=\ttfamily`.
+%
+% \DescribeKey[Env]{envcolumns}
+% In column based environments the number of columns can be set with e.g. \lstinline`envcolumns=2`.
+%
+% \DescribeKey[Env]{cellalign}
+% In table based environments the alignment of the cells can be adjusted with e.g. \lstinline`cellalign=c`.
+% The last column of a table is always fixed, see the environment descriptions below.
+%
+% \subsubsection{Description-based Environments}
+%
+% \DescribeEnv{refcardlist}
+% The environment \lstinline`refcardlist` is a description based list,
+% which means that the item is a string, for example to use as a command.
+% It automatically adjusts the width of the label to the longest one.
+% The label can be formatted by specifying \lstinline`labelfont=<command>`.
+% 
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\begin{refcardlist}[labelfont=\ttfamily]
+  \item[Short]         text text text
+  \item[A long label]  text text text
+  \item[Shorter]       text text text
+\end{refcardlist}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+% 
+% \DescribeEnv{refcardinline}
+% With the environment \lstinline`refcardinline` the list will be
+% set as a single paragraph.
+% The label can be formatted by specifying \lstinline`labelfont=<command>`.
+% Items are joined by a semicolon (;) and the list is closed with a full stop (.).
+% 
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\begin{refcardinline}[labelfont=\itshape]
+  \item[Short]         text text text 
+  \item[A long label]  text text text 
+  \item[Shorter]       text text text 
+\end{refcardinline}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+% 
+% \DescribeEnv{refcardcolumnlist}
+% The environment \lstinline`refcardcolumnlist` provides access to a list, 
+% which is set in multiple columns.
+% The number of columns can be given as an optional argument,
+% in the form \lstinline`envcolumns=<INT>`
+% 
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\begin{refcardcolumnlist}
+\begin{rscolslist}[envcolumns=5]
+  \item text
+  \item text
+  \item text
+  \item text
+  \item text
+  \item text
+  \item text
+  \item text
+  \item text
+\end{refcardcolumnlist}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+% 
+% \DescribeEnv{refcardverblist}
+% While it is often desired for these cheat sheets, it is not easily implemented.
+% For the time being, there is an environment which accepts \textquote{code}: 
+% \lstinline`refcardverblist`.
+% 
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\begin{refcardverblist}[envcolumns=3]
+  \item[\( \times   \)] \lstinline|\times| 
+  \item[\( \infty   \)] \lstinline|\infty| 
+  \item[\( \supset  \)] \lstinline|\supset|
+  \item[\( \alpha   \)] \lstinline|\alpha| 
+  \item[\( \epsilon \)] \lstinline|\epsilon|
+\end{refcardverblist}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+% 
+% It is (currently) not possible to use  the verbatim string as a label.
+% If this is desired, switch to a tabular based environment, which is described below.
+% 
+% \subsubsection{Table based environments}
+% 
+% The table based environments use the \lstinline`tabularx` package,
+% where the row of the table will fill the whole line.
+% 
+% \DescribeEnv{refcardtable}
+% The first one is \lstinline`refcardtable`.
+% The number of columns can be changed in the optional argument, but defaults to two, 
+% e.g. \lstinline`envcolumns=<INT>`. The alignment of the columns can be changed
+% with \lstinline`cellalign=<r|l|c|X>`.
+% The last column, however, is special, because it is used to balance the table and 
+% therefore the column type is fixed as \lstinline`X`.
+% 
+% As mentioned before, strings to be handled verbatim can be placed in this environment,
+% see row 3.
+% 
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\begin{refcardtable}[envcolumns=3,cellalign=c]
+  \hline
+  Short               & 1 & text text text\\
+  A long label        & 2 & text text text\\
+  \lstinline|Shorter| & 3 & text \lstinline|text| text\\
+  \hline
+\end{refcardtable}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+% 
+% \DescribeEnv{refcardmathtable}
+% The second one is meant to be used for maths notation,
+% called \lstinline`refcardmathtable`, which has no argument.
+% The first column is set in display style maths mode and 
+% will be fitted to the widest entry.
+% The second column is meant for the description and 
+% like the table before, the type is fixed as \lstinline`X`.
+% 
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\begin{refcardmathtable}
+  pV = nRT                      &  Ideal gas law \\
+  0 = e^{i\pi} + 1              & Euler's identity \\
+  \log(MN) = \log(M) + \log(N)  & Logarithm addition rule\\
+\end{refcardmathtable}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \section{Example Files}
+% 
+% A documentation in reference card style can be found as an example in the GitHub repository
+% in the demo directory.
+%
+% \section{Contributing and Issues}
+%
+% If you find something not working, or are missing features, you are welcome to raise an issue on
+% \href{https://github.com/polyluxus/refcard/issues}{\faGithub{}GitHub/polyluxus/refcard} or
+% send a pull request.
+%
+% \section{License}
+%
+% This work is licensed under the \ccbysa  
+% Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
+% To view a copy of this license, visit
+%
+% \begin{center}
+% \href{https://creativecommons.org/licenses/by-sa/4.0/}{https://creativecommons.org/licenses/by-sa/4.0/}.
+% \end{center}
+%
+% The full repository is located at
+%
+% \begin{center}
+% \href{https://github.com/polyluxus/refcard}{https://github.com/polyluxus/refcard}.
+% \end{center}
+%
+% The current Maintainer is Martin C Schwarzer (polyluxus@gmail.com).
+% 
+% This class is mainly based on the Tex - Latex Stack Exchange question and answer:
+%
+% \begin{center}
+% \href{https://tex.stackexchange.com/q/99765/33413}{%
+%   Document Class for Reference Cards (https://tex.stackexchange.com/q/99765/33413)}.
+% \end{center}
+%
+% It contains contributions from:
+%
+% \begin{itemize}
+% \item Mike Renfro  %
+%   \href{https://tex.stackexchange.com/users/3345}{\faStackExchange https://tex.stackexchange.com/users/3345}
+%   \href{https://github.com/mikerenfro}{\faGithub https://github.com/mikerenfro}
+% \item Sean Allred 
+%   \href{https://tex.stackexchange.com/users/17423}{\faStackExchange https://tex.stackexchange.com/users/17423}
+%   \href{https://github.com/vermiculus}{\faGithub https://github.com/vermiculus}
+% \item Eric Berquist  
+%   \href{https://github.com/berquist}{\faGithub https://github.com/berquist}
+% \end{itemize}
+% 
+% Other code has also been imported into this repository. 
+% This is highlighted in the commented source code.
+%
+% See also \href{https://github.com/polyluxus/refcard/CONTRIBUTORS}{https://github.com/polyluxus/refcard/CONTRIBUTORS}
+%
+% \StopEventually{}
+%
+% \clearpage
+% \interfootnotelinepenalty=10000
+% \section{Implementation}
+%
+% \subsection{Option definitions}
+%
+% These simple definitions for key-value pairs as class options are done with kvoptions as
+% described in TUGBoat.\footnote{J. Wright, C. Feuersänger, TUGBoat, Vol. 30 (2009), No. 1, p. 110-122.}
+% Using the prefix \lstinline`rcopt@` as an inbetween to distinguish values set from class options
+% in the document.
+%
+%    \begin{macrocode}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=refcard,
+  prefix=rcopt@
+}
+%    \end{macrocode}
+%
+% Defining how many columns shall be used. The initial value is to use three,
+% This can and should be set as \lstinline`columns=`\marg{int} in the preamble.
+% This option is disabled for the body of the document.
+%
+%    \begin{macrocode}
+\DeclareStringOption[3]{columns}
+\AtBeginDocument{%
+  \DisableKeyvalOption[action=error,package=refcard]{refcard}{columns}}
+%    \end{macrocode}
+%
+% Allow an option to set the standard margin via \lstinline`geometry`.
+%
+%    \begin{macrocode}
+\DeclareStringOption[1cm]{margin}
+%    \end{macrocode}
+%
+% Before inheriting the standard class \lstinline`article`, some options should 
+% be disabled to avoid potential clashes.
+% Using these will result in warnings, or even errors.
+%
+%    \begin{macrocode}
+\DeclareVoidOption{portrait}{%
+  \PackageWarning{refcard}{Incompatible with portrait mode, setting will be ignored.}}
+\DeclareVoidOption{twocolumn}{%
+  \PackageError{refcard}{Using 'multicol' for columns, use columns=2 instead.}}
+\DeclareVoidOption{titlepage}{%
+  \PackageWarning{refcard}{Incompatible with a title page, setting will be ignored.}}
+%    \end{macrocode}
+%
+% Pass all other options to the \lstinline`article` class and then process all options.
+% Finally load the most current version of the standard class to inherit.
+%
+%    \begin{macrocode}
+\DeclareDefaultOption{%
+  \PassOptionsToClass{\CurrentOptionKey}{article}}
+
+\ProcessKeyvalOptions{refcard}
+
+\LoadClass{article}[2014/09/29]
+%    \end{macrocode}
+%
+% \subsection{Additional Packages}
+%
+% Package \lstinline`etoolbox` provides additional hooks like \lstinline`\AtEndPreamble`.
+%
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+%    \end{macrocode}
+%
+% The page layout will be done with the package \lstinline`geometry`.
+% First define a new length, which will be set to the key-value pair set via the class options.
+% Then load the package with landscape mode and setting the margin.
+%
+%    \begin{macrocode}
+\RequirePackage{geometry}[2018/04/16]
+\newlength\refcard@margin
+\setlength\refcard@margin\rcopt@margin
+\AtEndPreamble{%
+  \geometry{landscape,margin=\refcard@margin}}
+%    \end{macrocode}
+%
+% The page will be split in columns, therefore load \lstinline`multicol`.
+% The begin and end document hooks will be ammended to automatically load a multicolumn environment.
+% The number of columns is set via the \lstinline`columns=`\marg{number} key in the class options.
+%
+%    \begin{macrocode}
+\RequirePackage{multicol}[2018/04/20]
+\AfterEndPreamble{%
+  \begin{multicols}{\rcopt@columns}}
+\AtEndDocument{%
+  \end{multicols}}
+%    \end{macrocode}
+%
+% \subsection{Redifinition of the title}
+% \begin{macro}{\maketitle}
+% 
+% The title should be set quite dense and centered.
+%
+%    \begin{macrocode}
+\renewcommand{\maketitle}{%
+  {%
+   \begin{center}%
+     \Large \@title \\%
+     \vspace{0.1ex}%
+     \small \@author, \@date%
+   \end{center}%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Redefine document divisions}
+%
+% The \lstinline`titlesec` package is used for manipulating the spacing 
+% around sections and subsections.
+%
+%    \begin{macrocode}
+\RequirePackage{titlesec}
+\titlespacing{\section}{0.05ex}{0.05ex}{0.05ex}
+\titlespacing{\subsection}{0.05ex}{0.05ex}{0.05ex}
+%    \end{macrocode}
+%
+% The \lstinline`parskip` package is used to set indentation and paragraph separation spacing.
+%
+%    \begin{macrocode}
+\RequirePackage[indent=0pt,skip=0.05ex]{parskip}
+%    \end{macrocode}
+%
+% Since a reference card usually only consits of one or two pages,
+% page numbers are unnecessary. This loads the package \lstinline`nopageno` to supress them.
+% This package redefines the definition of the pagestyle plain.
+%
+%    \begin{macrocode}
+\RequirePackage{nopageno} 
+%    \end{macrocode}
+%
+% Section numbering is also superfluous for these document types, so it can be turned off.
+%
+%    \begin{macrocode}
+\setcounter{secnumdepth}{0}
+%    \end{macrocode}
+%
+% \subsection{Redefinition and new environments}
+%
+% Load the package \lstinline`enumitem` for more control and extensions of itemise,
+% enumeration, and description environments. This class supports inline lists, 
+% so it seeds to be loaded with the appropriate option.
+%
+%    \begin{macrocode}
+\RequirePackage[inline]{enumitem}[2019/06/20]
+%    \end{macrocode}
+%
+% To generate denser lists, reduce spacing for items and above the environments globally.
+% Redefine the \lstinline`itemize` environment do use dashes, and to calculate the left margin automatically.
+%    \begin{macrocode}
+\setlist{noitemsep,topsep=0.05ex}
+\setlist[itemize]{label=\textendash,leftmargin=*}
+%    \end{macrocode}
+%
+% The package \lstinline`environ` provides a more convinient interface for environment definitions.
+%
+%    \begin{macrocode}
+\RequirePackage{environ}
+%    \end{macrocode}
+%
+% For more convenient customisation of the environments, provide a key-value interface for the environments.
+% These will control the font of the label, the number of columns used in the environments,
+% and the alignment of some of the table columns.\footnote{%
+% Part of the following code is adapted from the answer of Werner
+% (\href{https://tex.stackexchange.com/users/5764/werner}{\faStackExchange https://tex.stackexchange.com/users/5764})
+% on \href{https://tex.stackexchange.com/a/34314/33413}{How to create a command with key values? %
+% (https://tex.stackexchange.com/a/34314/33413)}
+% Note that the package \lstinline`keyval` gets automatically loaded by \lstinline`kvoptions`.}
+% 
+%    \begin{macrocode}
+\define@key{rclist}{labelfont}{\def\refcard@labelfont{#1}}
+\define@key{rclist}{envcolumns}{\def\refcard@envcolumns{#1}}
+\define@key{rclist}{cellalign}{\def\refcard@cellalign{#1}}
+%    \end{macrocode}
+%
+% Set some standard values to the above defined keys.
+% The label should be set in bold, to match the standard of decription environments.
+% Tables and column lists start with only two columns, the default alignment of the table columns is set to left.
+%
+%    \begin{macrocode}
+\setkeys{rclist}{%
+  labelfont=\bfseries,%
+  envcolumns=2,%
+  cellalign=l}%
+%    \end{macrocode}
+%
+% \subsubsection{Description like environments}
+% \begin{environment}{refcardlist}
+%
+% The most basic environment is of description type. 
+% The label of widest argument will be used throughout the entire list.
+% This is determined automatically.\footnote{%
+% The automatically adjusting label width is based on the answers by user121799 (\faStackExchange no profile page)
+% and Gonzalo Medina (\href{https://tex.stackexchange.com/users/3954/}{%
+% \faStackExchange https://tex.stackexchange.com/users/3954}).
+% \href{https://tex.stackexchange.com/q/461056/33413}{%
+% Why conflict between mathtools and Gonzalo's solution for auto-adjusting description environment?%
+% (https://tex.stackexchange.com/q/461056/33413)}
+% \href{https://tex.stackexchange.com/q/130097/33413}{%
+% Automatically set description list \lstinline`labelwidth` based on widest label?%
+% (https://tex.stackexchange.com/q/130097/33413)}}
+%
+% First, define a length/ variable to hold the currently widest label.
+%    \begin{macrocode}
+\newlength\refcardlist@widestitem
+%    \end{macrocode}
+%
+% The content of the environment is grouped to only affect the current definition.
+% Apply the keys to the current environment.
+%
+%    \begin{macrocode}
+\NewEnviron{refcardlist}[1][]{%
+  \begingroup%
+  \setkeys{rclist}{#1}%
+%    \end{macrocode}
+%
+% The \lstinline`vbox` is necessary to avoid missing item warnings.
+%
+%    \begin{macrocode}
+  \vbox{%
+    \global\refcardlist@widestitem=0pt%
+    \def\item[##1]{%
+      \settowidth\@tempdima{{\refcard@labelfont##1}}%
+      \ifdim\@tempdima>\refcardlist@widestitem\relax
+      \global\refcardlist@widestitem=\@tempdima\fi%
+    }%
+%    \end{macrocode}
+%
+% The \lstinline`\BODY` is set in a box that is never used. It is only parsed to determine the widest item.
+%
+%    \begin{macrocode}
+    \setbox0=\hbox{\BODY}%
+  }
+%    \end{macrocode}
+%
+% The actual definition of the environment. The font has to be reset as mentioned in the \lstinline`enumitem` package manual.
+%
+%    \begin{macrocode}
+  \begin{description}[%
+    font=\normalfont\refcard@labelfont,%
+    labelindent=0pt,%
+    labelwidth=\refcardlist@widestitem]%
+  \BODY
+  \end{description}%
+  \endgroup%
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{refcardinline}
+% 
+% The inline environment is used in unboxed mode to avoid awful spacing.\footnote{%
+% See \href{https://tex.stackexchange.com/q/450569/33413}{How can I fix the spacing in enumitem inline lists?}}
+% Items are joined with a semicolon, the label shall not devided from the following content, the list is
+% terminated by a full stop.
+%
+%    \begin{macrocode}
+%
+\NewEnviron{refcardinline}[1][]{%
+  \begingroup%
+  \setkeys{rclist}{#1}
+  \begin{description*}[%
+    mode=unboxed,%
+    font=\normalfont\refcard@labelfont,%
+    itemjoin={{; }},%
+    afterlabel={{\nobreakspace}},%
+    after={{.}}]%
+  \BODY
+  \end{description*}%
+  \endgroup%
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{refcardcolumnlist}
+%
+% A list type environment that can be set in multiple columns.
+% This is controlled via the key-values in the optional argument.
+% The \lstinline`itemize` environment is redefined to start a new line after each item,
+% the label should also not be separated from its content.
+% The number of columns is controlled with the \lstinline`multicol` package,
+% which is inthis case nested inside the main documents use.
+%
+%    \begin{macrocode}
+\NewEnviron{refcardcolumnlist}[1][]{%
+  \begingroup%
+  \setkeys{rclist}{#1}
+  \begin{multicols*}{\refcard@envcolumns}
+    \begin{itemize*}[%
+      itemjoin={{\newline}},%
+      afterlabel={{\nobreakspace}}]
+    \BODY
+    \end{itemize*}%
+  \end{multicols*}
+  \endgroup%
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{refcardverblist}
+%
+% The environments created with the \lstinline`environ` package behave more like commands,
+% than actual environments. Therefore they cannot handle verbatim input. 
+% Since this type of environment will probably be necessary, it needs to be defined differently,
+% i.e. the standard way. The actual definition matches the above environment.
+%
+%    \begin{macrocode}
+\newenvironment{refcardverblist}[1][]
+{
+  \begingroup
+  \setkeys{rclist}{#1}
+  \begin{multicols*}{\refcard@envcolumns}
+    \begin{itemize*}[%
+      itemjoin={{\newline}},%
+      afterlabel={{\nobreakspace}}]
+}{
+    \end{itemize*}
+  \end{multicols*}
+  \endgroup
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{Table environments}
+% \begin{environment}{refcardtable}
+%
+% This environment provides an easier interface to create a full witdh table
+% with one automagic column width. This is achieved by loading the \lstinline`tabularx` package.
+%
+%    \begin{macrocode}
+\RequirePackage{tabularx}
+%    \end{macrocode}
+%
+% Define a new counter for the number of columns to be used.
+% It has to be a counter, because it is used to do arithmetic evaluations.
+%
+%    \begin{macrocode}
+\newcounter{refcard@tablecolumns@count}
+%    \end{macrocode}
+%
+% The \lstinline`array` package, which is loaded by \lstinline`tabularx`, does not expand commands
+% in the column definition. Tthis leads to an error where it does not recognise the token for the 
+% column alignment. With a bit of trickery, it is still possible\footnote{%
+% This is based on the code provided by Bruno Le Floch
+% (\href{https://tex.stackexchange.com/users/2707}{%
+% \faStackExchange https://tex.stackexchange.com/users/2707})
+% on the answer for \href{https://tex.stackexchange.com/a/14460/33413}{%
+% How do I expand a macro into a tabular head? (https://tex.stackexchange.com/a/14460/33413)}}
+% First define a new columntype, which will then be recognised, but actually will be used to expand
+% the supplied input. This is achieved by redefining \lstinline`\NC@rewrite@\expand` to use
+% \lstinline`\expandafter` to expand the next token.
+%
+%    \begin{macrocode}
+\newcolumntype{\refcard@expandcoltype}{}
+\long\@namedef{%
+  NC@rewrite@\string\refcard@expandcoltype}{%
+  \expandafter\NC@find}
+%    \end{macrocode}
+%
+% Next the table is set up. The last column is used to balance the table, therefore it is 
+% fixed to be \lstinline`X`. This is also the reason why the number of columns is reduced by one.
+%
+%    \begin{macrocode}
+\NewEnviron{refcardtable}[1][]{%
+  \begingroup%
+  \setkeys{rclist}{#1}
+  \setcounter{refcard@tablecolumns@count}{\refcard@envcolumns}
+  \addtocounter{refcard@tablecolumns@count}{-1}
+  \begin{tabularx}{\linewidth}{%
+    *{\value{refcard@tablecolumns@count}}{%
+      \refcard@expandcoltype\refcard@cellalign}%
+    X}
+    \BODY
+  \end{tabularx}
+  \endgroup%
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{refcardtable}
+%
+% This environment provides an easier interface to create a full witdh table
+% where the first column accepts math input.
+% The last column is again used to balance the table and therefore is set to \lstinline`X` package.
+%
+%    \begin{macrocode}
+\NewEnviron{refcardmathtable}[1][]{%
+  \begingroup%
+  \setkeys{rclist}{#1}
+  \setcounter{refcard@tablecolumns@count}{\refcard@envcolumns}
+  \addtocounter{refcard@tablecolumns@count}{-2}
+  \begin{tabularx}{\linewidth}{%
+    >{\(\displaystyle}\refcard@expandcoltype\refcard@cellalign<{\)}%
+    *{\value{refcard@tablecolumns@count}}{%
+      \refcard@expandcoltype\refcard@cellalign}%
+    X }
+    \BODY
+  \end{tabularx}
+  \endgroup%
+  }
+%    \end{macrocode}
+% \end{environment}
+%
+% That's it. 
+%
+% \Finale
+\endinput
