@@ -35,11 +35,12 @@ Since `refcard` is based on `article` most options can be passed on.
 
 Thanks to the following people, who have contributed to the
 original implementation:
- Mike Renfro ([Mike Renfro](https://tex.stackexchange.com/users/3345),
+
+ - Mike Renfro ([Mike Renfro](https://tex.stackexchange.com/users/3345),
   [mikerenfro](https://github.com/mikerenfro));
- Sean Allred ([Sean Allred](https://tex.stackexchange.com/users/17423),
+ - Sean Allred ([Sean Allred](https://tex.stackexchange.com/users/17423),
   [vermiculus](https://github.com/vermiculus));
- Eric Berquist, ([berquist](https://github.com/berquist)).
+ - Eric Berquist, ([berquist](https://github.com/berquist)).
 
 Currently maintained by Martin C Schwarzer ([Martin-マーチン](https://chemistry.stackexchange.com/users/4945),
   [polyluxus](https://github.com/polyluxus)).
