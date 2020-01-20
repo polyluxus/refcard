@@ -227,17 +227,17 @@ see row 3
   \hline
   Short               & 1 & text text text\\
   A long label        & 2 & text text text\\
-  \lstinline|Shorter| & 3 & text \lstinline|text| text\\
-  \hline
+  \lstinline|Shorter| & 3 & %
+    text \lstinline|text| text\\\hline
 \end{refcardtable}
 
 \begin{lstlisting}
 \begin{refcardtable}[envcolumns=3,cellalign=c]
   \hline
-  Short        & 1 & text text text\\
-  A long label & 2 & text text text\\
-  \lstinline|Shorter| & 3 & text \lstinline|text| text\\
-  \hline
+  Short               & 1 & text text text\\
+  A long label        & 2 & text text text\\
+  \lstinline|Shorter| & 3 & %
+    text \lstinline|text| text\\\hline
 \end{refcardtable}
 \end{lstlisting}
 
@@ -251,17 +251,19 @@ The second column is meant for the description and
 like the table before, the type is fixed as \lstinline`X`.
 
 \begin{refcardmathtable}
-  pV = nRT   &  Ideal gas law \\
-  0 = e^{i\pi} + 1 & Euler's identity \\
-  \log(MN) = \log(M) + \log(N) & Logarithm addition rule\\
+  pV = nRT                     & Ideal gas law \\
+  0 = e^{i\pi} + 1             & Euler's identity \\
+  \log(MN) = \log(M) + \log(N) & %
+    Logarithm addition rule\\
 \end{refcardmathtable}
 
 
 \begin{lstlisting}
 \begin{refcardmathtable}
-  pV = nRT   &  Ideal gas law \\
-  0 = e^{i\pi} + 1 & Euler's identity \\
-  \log(MN) = \log(M) + \log(N) & Logarithm addition rule\\
+  pV = nRT                     & Ideal gas law \\
+  0 = e^{i\pi} + 1             & Euler's identity \\
+  \log(MN) = \log(M) + \log(N) & %
+    Logarithm addition rule\\
 \end{refcardmathtable}
 \end{lstlisting}
 
@@ -277,6 +279,7 @@ Thanks to the following people, who have contributed to the original implementat
   \href{https://github.com/vermiculus}{\faGithub}
 \item[Eric Berquist] 
   \href{https://github.com/berquist}{\faGithub}
+\item[] please see the manual for a full list.
 \end{refcardinline}
 
 Currently maintained by Martin C Schwarzer \href{https://chemistry.stackexchange.com/users/4945}{\faStackExchange}
